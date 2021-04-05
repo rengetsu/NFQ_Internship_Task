@@ -10,6 +10,9 @@ package nfq_internship_task;
  * @author Rengetsu
  */
 public class GUI extends javax.swing.JFrame {
+    
+    //  Classes
+    Login log = new Login();
 
     /**
      * Creates new form GUI
@@ -27,21 +30,81 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        guiPanel = new javax.swing.JPanel();
+        taskIcon = new javax.swing.JLabel();
+        reserveButton = new javax.swing.JButton();
+        visitButton = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("NFQ Internship Task");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
+
+        guiPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        taskIcon.setFont(new java.awt.Font("Lato Black", 0, 28)); // NOI18N
+        taskIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/logo.png"))); // NOI18N
+        taskIcon.setText("NFQ INTERNSHIP TASK");
+
+        reserveButton.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
+        reserveButton.setText("Reserve an Appointment with a Specialist");
+
+        visitButton.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
+        visitButton.setText("Visit Reservation Management Page");
+
+        loginButton.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
+        loginButton.setText("Login to a system as a Specialist");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout guiPanelLayout = new javax.swing.GroupLayout(guiPanel);
+        guiPanel.setLayout(guiPanelLayout);
+        guiPanelLayout.setHorizontalGroup(
+            guiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(guiPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(guiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(taskIcon)
+                    .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(visitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        guiPanelLayout.setVerticalGroup(
+            guiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(guiPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(taskIcon)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(visitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
+            .addComponent(guiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addComponent(guiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        log.setVisible(true);
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +142,10 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel guiPanel;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JButton reserveButton;
+    private javax.swing.JLabel taskIcon;
+    private javax.swing.JButton visitButton;
     // End of variables declaration//GEN-END:variables
 }
