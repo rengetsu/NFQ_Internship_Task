@@ -10,6 +10,9 @@ package nfq_internship_task;
  * @author Rengetsu
  */
 public class SpecialistGUI extends javax.swing.JFrame {
+    
+    //  Classes
+    DisplayBoard disboard = new DisplayBoard();
 
     /**
      * Creates new form SpecialistGUI
@@ -29,14 +32,50 @@ public class SpecialistGUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         taskIcon = new javax.swing.JLabel();
+        showDisplayBoardButton = new javax.swing.JButton();
+        customerVisitsManagement = new javax.swing.JButton();
+        endSpecialistSessionButton = new javax.swing.JButton();
+        lineLabel = new javax.swing.JLabel();
+        pageNameLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         taskIcon.setFont(new java.awt.Font("Lato Black", 0, 28)); // NOI18N
         taskIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/logo.png"))); // NOI18N
         taskIcon.setText("NFQ INTERNSHIP TASK");
+
+        showDisplayBoardButton.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
+        showDisplayBoardButton.setText("Show Service Department Screen");
+        showDisplayBoardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showDisplayBoardButtonActionPerformed(evt);
+            }
+        });
+
+        customerVisitsManagement.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
+        customerVisitsManagement.setText("Customers Visits Management");
+        customerVisitsManagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerVisitsManagementActionPerformed(evt);
+            }
+        });
+
+        endSpecialistSessionButton.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
+        endSpecialistSessionButton.setText("End Specialist Session");
+        endSpecialistSessionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endSpecialistSessionButtonActionPerformed(evt);
+            }
+        });
+
+        lineLabel.setFont(new java.awt.Font("High Tower Text", 0, 14)); // NOI18N
+        lineLabel.setText("_____________________________________________");
+
+        pageNameLabel.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
+        pageNameLabel.setText("Specialist GUI");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -46,13 +85,41 @@ public class SpecialistGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(taskIcon)
                 .addGap(40, 40, 40))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(endSpecialistSessionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(lineLabel))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(pageNameLabel))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(showDisplayBoardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(customerVisitsManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(taskIcon)
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pageNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lineLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(showDisplayBoardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(customerVisitsManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(endSpecialistSessionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -68,6 +135,18 @@ public class SpecialistGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void showDisplayBoardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDisplayBoardButtonActionPerformed
+        disboard.setVisible(true);
+    }//GEN-LAST:event_showDisplayBoardButtonActionPerformed
+
+    private void endSpecialistSessionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endSpecialistSessionButtonActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_endSpecialistSessionButtonActionPerformed
+
+    private void customerVisitsManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerVisitsManagementActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customerVisitsManagementActionPerformed
 
     /**
      * @param args the command line arguments
@@ -105,7 +184,12 @@ public class SpecialistGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton customerVisitsManagement;
+    private javax.swing.JButton endSpecialistSessionButton;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lineLabel;
+    private javax.swing.JLabel pageNameLabel;
+    private javax.swing.JButton showDisplayBoardButton;
     private javax.swing.JLabel taskIcon;
     // End of variables declaration//GEN-END:variables
 }

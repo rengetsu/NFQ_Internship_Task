@@ -27,47 +27,134 @@ public class DisplayBoard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        screenPanel = new javax.swing.JPanel();
         taskIcon = new javax.swing.JLabel();
+        closeDisplayBoardButton = new javax.swing.JButton();
+        scrollPane = new javax.swing.JScrollPane();
+        screenTable = new javax.swing.JTable();
+        refreshInfoText = new javax.swing.JLabel();
+        lineLabel = new javax.swing.JLabel();
+        pageNameLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        screenPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         taskIcon.setFont(new java.awt.Font("Lato Black", 0, 28)); // NOI18N
         taskIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/logo.png"))); // NOI18N
         taskIcon.setText("NFQ INTERNSHIP TASK");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        closeDisplayBoardButton.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
+        closeDisplayBoardButton.setText("Close Department Screen");
+        closeDisplayBoardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeDisplayBoardButtonActionPerformed(evt);
+            }
+        });
+
+        screenTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"0001", "1", "2021-04-06 10:00:00", "Dr. Kabajashi Bashi", "Mark", "Registered"},
+                {"0002", "1", "2021-04-06 11:00:00", "Dr. Kabajashi Bashi", "Agne", "Registered"},
+                {"0003", "2", "2021-04-06 12:00:00", "Kakashi Hatake", "Alex", "Registered"},
+                {"0004", "1", "2021-04-06 13:00:00", "Dr. Kabajashi Bashi", "Vika", "Registered"},
+                {"0005", "2", "2021-04-06 14:00:00", "Kakashi Hatake", "Sasha", "Registered"}
+            },
+            new String [] {
+                "Visi number", "Specialist number", "Visit date & time", "Specialist name", "Customer name", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollPane.setViewportView(screenTable);
+
+        refreshInfoText.setFont(new java.awt.Font("Lato Black", 0, 11)); // NOI18N
+        refreshInfoText.setText("The service department screen automatically refreshes every 5 seconds");
+
+        lineLabel.setFont(new java.awt.Font("High Tower Text", 0, 14)); // NOI18N
+        lineLabel.setText("_____________________________________________");
+
+        pageNameLabel.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
+        pageNameLabel.setText("Service Department Screen");
+
+        javax.swing.GroupLayout screenPanelLayout = new javax.swing.GroupLayout(screenPanel);
+        screenPanel.setLayout(screenPanelLayout);
+        screenPanelLayout.setHorizontalGroup(
+            screenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(screenPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(taskIcon)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(screenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(screenPanelLayout.createSequentialGroup()
+                        .addComponent(scrollPane)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, screenPanelLayout.createSequentialGroup()
+                        .addGap(0, 176, Short.MAX_VALUE)
+                        .addGroup(screenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, screenPanelLayout.createSequentialGroup()
+                                .addComponent(taskIcon)
+                                .addGap(158, 158, 158))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, screenPanelLayout.createSequentialGroup()
+                                .addComponent(pageNameLabel)
+                                .addGap(243, 243, 243))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, screenPanelLayout.createSequentialGroup()
+                                .addComponent(lineLabel)
+                                .addGap(208, 208, 208))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, screenPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(screenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(closeDisplayBoardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshInfoText))
+                .addGap(149, 149, 149))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        screenPanelLayout.setVerticalGroup(
+            screenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(screenPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(taskIcon)
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pageNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lineLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(refreshInfoText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(closeDisplayBoardButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(screenPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(screenPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void closeDisplayBoardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeDisplayBoardButtonActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_closeDisplayBoardButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -105,7 +192,13 @@ public class DisplayBoard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton closeDisplayBoardButton;
+    private javax.swing.JLabel lineLabel;
+    private javax.swing.JLabel pageNameLabel;
+    private javax.swing.JLabel refreshInfoText;
+    private javax.swing.JPanel screenPanel;
+    private javax.swing.JTable screenTable;
+    private javax.swing.JScrollPane scrollPane;
     private javax.swing.JLabel taskIcon;
     // End of variables declaration//GEN-END:variables
 }

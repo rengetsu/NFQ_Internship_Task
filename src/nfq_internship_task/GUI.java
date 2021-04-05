@@ -12,7 +12,9 @@ package nfq_internship_task;
 public class GUI extends javax.swing.JFrame {
     
     //  Classes
-    Login log = new Login();
+    Login           log = new Login();
+    Reservation     res = new Reservation();
+    VisitManagement vm  = new VisitManagement();
 
     /**
      * Creates new form GUI
@@ -32,9 +34,12 @@ public class GUI extends javax.swing.JFrame {
 
         guiPanel = new javax.swing.JPanel();
         taskIcon = new javax.swing.JLabel();
+        lineLabel = new javax.swing.JLabel();
+        pageNameLabel = new javax.swing.JLabel();
         reserveButton = new javax.swing.JButton();
         visitButton = new javax.swing.JButton();
         loginButton = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NFQ Internship Task");
@@ -47,11 +52,27 @@ public class GUI extends javax.swing.JFrame {
         taskIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/logo.png"))); // NOI18N
         taskIcon.setText("NFQ INTERNSHIP TASK");
 
+        lineLabel.setFont(new java.awt.Font("High Tower Text", 0, 14)); // NOI18N
+        lineLabel.setText("_____________________________________________");
+
+        pageNameLabel.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
+        pageNameLabel.setText("Main GUI");
+
         reserveButton.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
         reserveButton.setText("Reserve an Appointment with a Specialist");
+        reserveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reserveButtonActionPerformed(evt);
+            }
+        });
 
         visitButton.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
         visitButton.setText("Visit Reservation Management Page");
+        visitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visitButtonActionPerformed(evt);
+            }
+        });
 
         loginButton.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
         loginButton.setText("Login to a system as a Specialist");
@@ -61,17 +82,43 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        closeButton.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
+        closeButton.setText("Close Application");
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout guiPanelLayout = new javax.swing.GroupLayout(guiPanel);
         guiPanel.setLayout(guiPanelLayout);
         guiPanelLayout.setHorizontalGroup(
             guiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(guiPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(guiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(taskIcon)
-                    .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(visitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(guiPanelLayout.createSequentialGroup()
+                        .addGroup(guiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(guiPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(guiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(taskIcon)
+                                    .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(guiPanelLayout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addComponent(lineLabel))
+                            .addGroup(guiPanelLayout.createSequentialGroup()
+                                .addGap(163, 163, 163)
+                                .addComponent(pageNameLabel)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, guiPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(guiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(visitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loginButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+            .addGroup(guiPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(closeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         guiPanelLayout.setVerticalGroup(
@@ -80,12 +127,18 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(taskIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pageNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lineLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(visitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(closeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -105,6 +158,18 @@ public class GUI extends javax.swing.JFrame {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         log.setVisible(true);
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void visitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitButtonActionPerformed
+        vm.setVisible(true);
+    }//GEN-LAST:event_visitButtonActionPerformed
+
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_closeButtonActionPerformed
+
+    private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
+        res.setVisible(true);
+    }//GEN-LAST:event_reserveButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,8 +207,11 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton closeButton;
     private javax.swing.JPanel guiPanel;
+    private javax.swing.JLabel lineLabel;
     private javax.swing.JButton loginButton;
+    private javax.swing.JLabel pageNameLabel;
     private javax.swing.JButton reserveButton;
     private javax.swing.JLabel taskIcon;
     private javax.swing.JButton visitButton;
