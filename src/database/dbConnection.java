@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import nfq_internship_task.Login;
 
 /**
  *
@@ -14,8 +15,9 @@ import javax.swing.JOptionPane;
 public class dbConnection {
     
     //  Main connection to database function
-    public void connectionStart(String usernameText, String passwordText)
+    public boolean connectionStart(String usernameText, String passwordText)
     {
+        boolean back = false;
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/nfqdb", "root", "");
@@ -26,17 +28,22 @@ public class dbConnection {
             ResultSet rs = pst.executeQuery();
             if(rs.next()){
                 //  If OK show message that everything is OK
-                JOptionPane.showMessageDialog(null, "Username and Password OK");
+                JOptionPane.showMessageDialog(null, "Username and Password OK. Now you login!");
+                //  Give access as a specialist to a user to enter specialist GUI
+                back = true;
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error! Username and Password do not match.");
+                back = false;
             }
             con.close();
         }
         catch(Exception e){
             //  Show error message to user
             JOptionPane.showMessageDialog(null, e);
+            back = false;
         }
+        //  Returning true-false to give access or not
+        return back;
     }
-    
 }
