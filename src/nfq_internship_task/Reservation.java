@@ -5,12 +5,17 @@
  */
 package nfq_internship_task;
 
+import database.dbVisit;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rengetsu
  */
 public class Reservation extends javax.swing.JFrame {
 
+    dbVisit dbvst   = new dbVisit();
+    
     /**
      * Creates new form Reservation
      */
@@ -34,7 +39,9 @@ public class Reservation extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        backButton1 = new javax.swing.JButton();
+        bookVisitButton = new javax.swing.JButton();
+        yourNameLabel = new javax.swing.JLabel();
+        yourNameText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -64,13 +71,16 @@ public class Reservation extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dr. Kabajashi Bashi", "Kakashi Hatake" }));
 
-        backButton1.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
-        backButton1.setText("Book a Visit");
-        backButton1.addActionListener(new java.awt.event.ActionListener() {
+        bookVisitButton.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
+        bookVisitButton.setText("Book a Visit");
+        bookVisitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButton1ActionPerformed(evt);
+                bookVisitButtonActionPerformed(evt);
             }
         });
+
+        yourNameLabel.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
+        yourNameLabel.setText("Your name:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,13 +100,17 @@ public class Reservation extends javax.swing.JFrame {
                                 .addGap(57, 57, 57))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(backButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(bookVisitButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(backButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(taskIcon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(taskIcon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(yourNameLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(yourNameText))))
                         .addContainerGap(14, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -113,7 +127,11 @@ public class Reservation extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(backButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(yourNameLabel)
+                    .addComponent(yourNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bookVisitButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(backButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -137,9 +155,16 @@ public class Reservation extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void backButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backButton1ActionPerformed
+    private void bookVisitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookVisitButtonActionPerformed
+        //  Check if textfield is not empty and if not send name
+        if( yourNameText.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "You must enter a name!");
+        }
+        else{
+            String name = yourNameText.getText();
+            dbvst.addNewVisit(name);
+        }
+    }//GEN-LAST:event_bookVisitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,12 +203,14 @@ public class Reservation extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton backButton1;
+    private javax.swing.JButton bookVisitButton;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lineLabel;
     private javax.swing.JLabel pageNameLabel;
     private javax.swing.JLabel taskIcon;
+    private javax.swing.JLabel yourNameLabel;
+    private javax.swing.JTextField yourNameText;
     // End of variables declaration//GEN-END:variables
 }

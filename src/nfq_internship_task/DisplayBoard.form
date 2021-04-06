@@ -52,21 +52,19 @@
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="176" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="243" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="taskIcon" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="taskIcon" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="pageNameLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="243" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lineLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -76,7 +74,7 @@
                       <Component id="closeDisplayBoardButton" min="-2" pref="351" max="-2" attributes="0"/>
                       <Component id="refreshInfoText" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="242" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -133,52 +131,19 @@
             <Component class="javax.swing.JTable" name="screenTable">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="5">
-                    <Column editable="false" title="Visi number" type="java.lang.String">
-                      <Data value="0001"/>
-                      <Data value="0002"/>
-                      <Data value="0003"/>
-                      <Data value="0004"/>
-                      <Data value="0005"/>
-                    </Column>
-                    <Column editable="false" title="Specialist number" type="java.lang.String">
-                      <Data value="1"/>
-                      <Data value="1"/>
-                      <Data value="2"/>
-                      <Data value="1"/>
-                      <Data value="2"/>
-                    </Column>
-                    <Column editable="false" title="Visit date &amp; time" type="java.lang.String">
-                      <Data value="2021-04-06 10:00:00"/>
-                      <Data value="2021-04-06 11:00:00"/>
-                      <Data value="2021-04-06 12:00:00"/>
-                      <Data value="2021-04-06 13:00:00"/>
-                      <Data value="2021-04-06 14:00:00"/>
-                    </Column>
-                    <Column editable="false" title="Specialist name" type="java.lang.String">
-                      <Data value="Dr. Kabajashi Bashi"/>
-                      <Data value="Dr. Kabajashi Bashi"/>
-                      <Data value="Kakashi Hatake"/>
-                      <Data value="Dr. Kabajashi Bashi"/>
-                      <Data value="Kakashi Hatake"/>
-                    </Column>
-                    <Column editable="false" title="Customer name" type="java.lang.String">
-                      <Data value="Mark"/>
-                      <Data value="Agne"/>
-                      <Data value="Alex"/>
-                      <Data value="Vika"/>
-                      <Data value="Sasha"/>
-                    </Column>
-                    <Column editable="false" title="Status" type="java.lang.String">
-                      <Data value="Registered"/>
-                      <Data value="Registered"/>
-                      <Data value="Registered"/>
-                      <Data value="Registered"/>
-                      <Data value="Registered"/>
-                    </Column>
+                  <Table columnCount="6" rowCount="0">
+                    <Column editable="false" title="Visi number" type="java.lang.String"/>
+                    <Column editable="false" title="Specialist number" type="java.lang.String"/>
+                    <Column editable="false" title="Visit date &amp; time" type="java.lang.String"/>
+                    <Column editable="false" title="Specialist name" type="java.lang.String"/>
+                    <Column editable="false" title="Customer name" type="java.lang.String"/>
+                    <Column editable="false" title="Status" type="java.lang.String"/>
                   </Table>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
