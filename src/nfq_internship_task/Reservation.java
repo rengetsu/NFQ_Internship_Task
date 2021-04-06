@@ -7,6 +7,9 @@ package nfq_internship_task;
 
 import database.dbVisit;
 import javax.swing.JOptionPane;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -38,7 +41,7 @@ public class Reservation extends javax.swing.JFrame {
         pageNameLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        specComboBox = new javax.swing.JComboBox<>();
         bookVisitButton = new javax.swing.JButton();
         yourNameLabel = new javax.swing.JLabel();
         yourNameText = new javax.swing.JTextField();
@@ -69,7 +72,7 @@ public class Reservation extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
         jLabel1.setText("Select specialist:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dr. Kabajashi Bashi", "Kakashi Hatake" }));
+        specComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dr. Kabajashi Bashi", "Kakashi Hatake" }));
 
         bookVisitButton.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
         bookVisitButton.setText("Book a Visit");
@@ -109,7 +112,7 @@ public class Reservation extends javax.swing.JFrame {
                                     .addComponent(yourNameLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(specComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(yourNameText))))
                         .addContainerGap(14, Short.MAX_VALUE))))
         );
@@ -125,7 +128,7 @@ public class Reservation extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(specComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(yourNameLabel)
@@ -156,13 +159,31 @@ public class Reservation extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void bookVisitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookVisitButtonActionPerformed
+        //  How many visits we have now
+        int customerNumber = dbvst.howManyVisits()+1;
+        System.out.println(customerNumber);
+
         //  Check if textfield is not empty and if not send name
+        Object selected = specComboBox.getSelectedItem();
+        String name;    // Customer name
+        int specnmbr;   // Specialist number
+        
+        
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String visitDateTime = sdf3.format(timestamp);
+                
+        String visitStatus = "Registered";  // Visit status "registered" by default than new visit is created
+        if(selected.toString().equals("Dr. Kabajashi Bashi"))
+        {
+            specnmbr = 1;
+        }else{specnmbr = 2;}
         if( yourNameText.getText().equals("")){
             JOptionPane.showMessageDialog(null, "You must enter a name!");
         }
         else{
-            String name = yourNameText.getText();
-            dbvst.addNewVisit(name);
+            name = yourNameText.getText();
+            dbvst.addNewVisit(customerNumber, name, specnmbr, visitStatus, visitDateTime);
         }
     }//GEN-LAST:event_bookVisitButtonActionPerformed
 
@@ -204,11 +225,11 @@ public class Reservation extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton bookVisitButton;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lineLabel;
     private javax.swing.JLabel pageNameLabel;
+    private javax.swing.JComboBox<String> specComboBox;
     private javax.swing.JLabel taskIcon;
     private javax.swing.JLabel yourNameLabel;
     private javax.swing.JTextField yourNameText;

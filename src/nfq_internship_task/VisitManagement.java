@@ -5,15 +5,27 @@
  */
 package nfq_internship_task;
 
+import database.dbVisit;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rengetsu
  */
 public class VisitManagement extends javax.swing.JFrame {
+    
+    dbVisit dbvs    =   new dbVisit();
 
     /**
      * Creates new form VisitManagement
      */
+    
+    public void afterDelete(){
+        numberField.setText("");
+        infoPanel.setVisible(false);
+        cancelButton.setEnabled(false);
+        pack();
+    }
     
     public void showInfo(boolean chc){
         if( chc == true){
@@ -46,16 +58,16 @@ public class VisitManagement extends javax.swing.JFrame {
         numberField = new javax.swing.JTextField();
         editButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
-        backButton1 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         infoPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        dateRez = new javax.swing.JLabel();
+        specRez = new javax.swing.JLabel();
+        nameRez = new javax.swing.JLabel();
+        statusRez = new javax.swing.JLabel();
         lineLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
@@ -93,13 +105,13 @@ public class VisitManagement extends javax.swing.JFrame {
             }
         });
 
-        backButton1.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
-        backButton1.setForeground(new java.awt.Color(255, 0, 0));
-        backButton1.setText("Cancel Visit");
-        backButton1.setEnabled(false);
-        backButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancelButton.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
+        cancelButton.setForeground(new java.awt.Color(255, 0, 0));
+        cancelButton.setText("Cancel Visit");
+        cancelButton.setEnabled(false);
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButton1ActionPerformed(evt);
+                cancelButtonActionPerformed(evt);
             }
         });
 
@@ -117,17 +129,17 @@ public class VisitManagement extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
         jLabel7.setText("Visit status:");
 
-        jLabel2.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
-        jLabel2.setText("2021-04-06 10:00:00");
+        dateRez.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        dateRez.setText("2021-04-06 10:00:00");
 
-        jLabel4.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
-        jLabel4.setText("Dr. Kabajashi Bashi");
+        specRez.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        specRez.setText("Dr. Kabajashi Bashi");
 
-        jLabel6.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
-        jLabel6.setText("Mark");
+        nameRez.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        nameRez.setText("Mark");
 
-        jLabel8.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
-        jLabel8.setText("Registered");
+        statusRez.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        statusRez.setText("Registered");
 
         lineLabel1.setFont(new java.awt.Font("High Tower Text", 0, 14)); // NOI18N
         lineLabel1.setText("_____________________________________________");
@@ -143,19 +155,19 @@ public class VisitManagement extends javax.swing.JFrame {
                         .addGroup(infoPanelLayout.createSequentialGroup()
                             .addComponent(jLabel7)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8))
+                            .addComponent(statusRez))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, infoPanelLayout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2))
+                            .addComponent(dateRez))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, infoPanelLayout.createSequentialGroup()
                             .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4))
+                            .addComponent(specRez))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, infoPanelLayout.createSequentialGroup()
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6)))
+                            .addComponent(nameRez)))
                     .addComponent(lineLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -167,19 +179,19 @@ public class VisitManagement extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(dateRez))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(specRez))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(nameRez))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8)))
+                    .addComponent(statusRez)))
         );
 
         jLabel9.setFont(new java.awt.Font("Lato Black", 0, 12)); // NOI18N
@@ -203,7 +215,7 @@ public class VisitManagement extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(backButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cancelButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(backButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -242,7 +254,7 @@ public class VisitManagement extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(backButton1)
+                .addComponent(cancelButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(backButton)
                 .addContainerGap())
@@ -266,11 +278,29 @@ public class VisitManagement extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void backButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backButton1ActionPerformed
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        if( numberField.getText().equals("") )
+        {
+            JOptionPane.showMessageDialog(null, "You must enter a number!");
+        }
+        else
+        {
+            int nmbr = Integer.parseInt(numberField.getText());
+            dbvs.deleteVisit(nmbr);
+        }
+        afterDelete();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        if( numberField.getText().equals("") )
+        {
+            JOptionPane.showMessageDialog(null, "You must enter a number!");
+        }
+        else
+        {
+            int nmbr = Integer.parseInt(numberField.getText());
+            dbvs.getVisit(nmbr);
+        }
         showInfo(true);
     }//GEN-LAST:event_editButtonActionPerformed
 
@@ -311,23 +341,23 @@ public class VisitManagement extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton backButton1;
+    public static javax.swing.JButton cancelButton;
+    public static javax.swing.JLabel dateRez;
     private javax.swing.JButton editButton;
-    private javax.swing.JPanel infoPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    public static javax.swing.JPanel infoPanel;
+    public static javax.swing.JLabel jLabel1;
+    public static javax.swing.JLabel jLabel3;
+    public static javax.swing.JLabel jLabel5;
+    public static javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lineLabel;
-    private javax.swing.JLabel lineLabel1;
+    public static javax.swing.JLabel lineLabel1;
+    public static javax.swing.JLabel nameRez;
     private javax.swing.JTextField numberField;
     private javax.swing.JLabel pageNameLabel;
+    public static javax.swing.JLabel specRez;
+    public static javax.swing.JLabel statusRez;
     private javax.swing.JLabel taskIcon;
     // End of variables declaration//GEN-END:variables
 }
