@@ -5,17 +5,32 @@
  */
 package nfq_internship_task;
 
+import database.dbDisplayBoard;
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  *
  * @author Rengetsu
  */
 public class DisplayBoard extends javax.swing.JFrame {
+    
+    dbDisplayBoard dbdb = new dbDisplayBoard();
 
     /**
      * Creates new form DisplayBoard
      */
     public DisplayBoard() {
         initComponents();
+        
+        //  Update Display Board every 5 seconds
+        Timer t = new Timer();
+        t.schedule(new TimerTask(){
+            @Override
+            public void run() {
+                dbdb.updateDisplayBoardTable();
+            }
+        }, 0, 5000);
     }
 
     /**
@@ -55,11 +70,7 @@ public class DisplayBoard extends javax.swing.JFrame {
 
         screenTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"0001", "1", "2021-04-06 10:00:00", "Dr. Kabajashi Bashi", "Mark", "Registered"},
-                {"0002", "1", "2021-04-06 11:00:00", "Dr. Kabajashi Bashi", "Agne", "Registered"},
-                {"0003", "2", "2021-04-06 12:00:00", "Kakashi Hatake", "Alex", "Registered"},
-                {"0004", "1", "2021-04-06 13:00:00", "Dr. Kabajashi Bashi", "Vika", "Registered"},
-                {"0005", "2", "2021-04-06 14:00:00", "Kakashi Hatake", "Sasha", "Registered"}
+
             },
             new String [] {
                 "Visi number", "Specialist number", "Visit date & time", "Specialist name", "Customer name", "Status"
@@ -102,23 +113,22 @@ public class DisplayBoard extends javax.swing.JFrame {
                         .addComponent(scrollPane)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, screenPanelLayout.createSequentialGroup()
-                        .addGap(0, 176, Short.MAX_VALUE)
+                        .addGap(0, 243, Short.MAX_VALUE)
                         .addGroup(screenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, screenPanelLayout.createSequentialGroup()
-                                .addComponent(taskIcon)
-                                .addGap(158, 158, 158))
+                            .addComponent(taskIcon, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, screenPanelLayout.createSequentialGroup()
                                 .addComponent(pageNameLabel)
-                                .addGap(243, 243, 243))
+                                .addGap(85, 85, 85))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, screenPanelLayout.createSequentialGroup()
                                 .addComponent(lineLabel)
-                                .addGap(208, 208, 208))))))
+                                .addGap(50, 50, 50)))
+                        .addGap(230, 230, 230))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, screenPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(screenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(closeDisplayBoardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(refreshInfoText))
-                .addGap(149, 149, 149))
+                .addGap(242, 242, 242))
         );
         screenPanelLayout.setVerticalGroup(
             screenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +207,7 @@ public class DisplayBoard extends javax.swing.JFrame {
     private javax.swing.JLabel pageNameLabel;
     private javax.swing.JLabel refreshInfoText;
     private javax.swing.JPanel screenPanel;
-    private javax.swing.JTable screenTable;
+    public static javax.swing.JTable screenTable;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JLabel taskIcon;
     // End of variables declaration//GEN-END:variables
