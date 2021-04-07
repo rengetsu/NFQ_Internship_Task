@@ -13,6 +13,7 @@ public class SpecialistGUI extends javax.swing.JFrame {
     
     //  Classes
     DisplayBoard disboard = new DisplayBoard();
+    CustomersManagment cm = new CustomersManagment();
 
     /**
      * Creates new form SpecialistGUI
@@ -145,7 +146,7 @@ public class SpecialistGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_endSpecialistSessionButtonActionPerformed
 
     private void customerVisitsManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerVisitsManagementActionPerformed
-        // TODO add your handling code here:
+        cm.setVisible(true);
     }//GEN-LAST:event_customerVisitsManagementActionPerformed
 
     /**

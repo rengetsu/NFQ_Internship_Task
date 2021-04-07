@@ -5,17 +5,57 @@
  */
 package nfq_internship_task;
 
+import database.dbCustomersManagment;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rengetsu
  */
 public class CustomersManagment extends javax.swing.JFrame {
-
+    
+    int custNmbr;
+    
+    dbCustomersManagment dbcm = new dbCustomersManagment();
     /**
      * Creates new form CustomersManagment
      */
+    
+    public void showInfo(boolean chc){
+        if( chc == true){
+            customerInfoPanel.setVisible(true);
+            pack();
+        }else{
+            customerInfoPanel.setVisible(false);
+            pack();
+        }
+    }
+    
+    public void showStatus(boolean chc){
+        if( chc == true){
+            changeStatusPanel.setVisible(true);
+            pack();
+        }else{
+            changeStatusPanel.setVisible(false);
+            pack();
+        }
+    }
+    
     public CustomersManagment() {
         initComponents();
+        showStatus(false);
+        showInfo(false);
+        
+        //  Update Display Board every 5 seconds
+        Timer t = new Timer();
+        t.schedule(new TimerTask(){
+            @Override
+            public void run() {
+                dbcm.updateCustomersBoard();
+            }
+        }, 0, 5000);
     }
 
     /**
@@ -31,13 +71,33 @@ public class CustomersManagment extends javax.swing.JFrame {
         lineLabel = new javax.swing.JLabel();
         pageNameLabel = new javax.swing.JLabel();
         taskIcon = new javax.swing.JLabel();
+        numberText = new javax.swing.JTextField();
+        showButton = new javax.swing.JButton();
+        enterText = new javax.swing.JLabel();
+        lineLabel1 = new javax.swing.JLabel();
+        scrollPane = new javax.swing.JScrollPane();
+        customersTable = new javax.swing.JTable();
+        changeStatusPanel = new javax.swing.JPanel();
+        statusText = new javax.swing.JLabel();
+        statusComboBox = new javax.swing.JComboBox<>();
+        statusButton = new javax.swing.JButton();
+        customerInfoPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        dateRez = new javax.swing.JLabel();
+        specRez = new javax.swing.JLabel();
+        nameRez = new javax.swing.JLabel();
+        statusRez = new javax.swing.JLabel();
+        lineLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         customerManagmentPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         lineLabel.setFont(new java.awt.Font("High Tower Text", 0, 14)); // NOI18N
-        lineLabel.setText("_____________________________________________");
+        lineLabel.setText("___________________________________________________");
 
         pageNameLabel.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
         pageNameLabel.setText("Customers Visits Managment");
@@ -46,21 +106,196 @@ public class CustomersManagment extends javax.swing.JFrame {
         taskIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/logo.png"))); // NOI18N
         taskIcon.setText("NFQ INTERNSHIP TASK");
 
+        numberText.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
+
+        showButton.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
+        showButton.setText("Show");
+        showButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showButtonActionPerformed(evt);
+            }
+        });
+
+        enterText.setFont(new java.awt.Font("Lato Black", 0, 12)); // NOI18N
+        enterText.setText("Enter the visit number whose status you want to change:");
+
+        lineLabel1.setFont(new java.awt.Font("High Tower Text", 0, 14)); // NOI18N
+        lineLabel1.setText("___________________________________________________");
+
+        customersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Visi number", "Specialist number", "Visit date & time", "Specialist name", "Customer name", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scrollPane.setViewportView(customersTable);
+
+        changeStatusPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        statusText.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
+        statusText.setText("Change status:");
+
+        statusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registered", "Visit started", "Completed" }));
+
+        statusButton.setFont(new java.awt.Font("Lato Black", 0, 12)); // NOI18N
+        statusButton.setText("Change");
+        statusButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout changeStatusPanelLayout = new javax.swing.GroupLayout(changeStatusPanel);
+        changeStatusPanel.setLayout(changeStatusPanelLayout);
+        changeStatusPanelLayout.setHorizontalGroup(
+            changeStatusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(changeStatusPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(changeStatusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(statusButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statusComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statusText, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        changeStatusPanelLayout.setVerticalGroup(
+            changeStatusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(changeStatusPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(statusText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(statusButton)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        customerInfoPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
+        jLabel1.setText("Visit Date & Time:");
+
+        jLabel3.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
+        jLabel3.setText("Specialist name:");
+
+        jLabel5.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
+        jLabel5.setText("Customer name:");
+
+        jLabel7.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
+        jLabel7.setText("Visit status:");
+
+        dateRez.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        dateRez.setText("2021-04-06 10:00:00");
+
+        specRez.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        specRez.setText("Dr. Kabajashi Bashi");
+
+        nameRez.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        nameRez.setText("Mark");
+
+        statusRez.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        statusRez.setText("Registered");
+
+        lineLabel2.setFont(new java.awt.Font("High Tower Text", 0, 14)); // NOI18N
+        lineLabel2.setText("_____________________________________________");
+
+        javax.swing.GroupLayout customerInfoPanelLayout = new javax.swing.GroupLayout(customerInfoPanel);
+        customerInfoPanel.setLayout(customerInfoPanelLayout);
+        customerInfoPanelLayout.setHorizontalGroup(
+            customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customerInfoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(customerInfoPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(statusRez))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, customerInfoPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dateRez))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, customerInfoPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(specRez))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, customerInfoPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nameRez)))
+                    .addComponent(lineLabel2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        customerInfoPanelLayout.setVerticalGroup(
+            customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerInfoPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lineLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(dateRez))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(specRez))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(nameRez))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(statusRez)))
+        );
+
         javax.swing.GroupLayout customerManagmentPanelLayout = new javax.swing.GroupLayout(customerManagmentPanel);
         customerManagmentPanel.setLayout(customerManagmentPanelLayout);
         customerManagmentPanelLayout.setHorizontalGroup(
             customerManagmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerManagmentPanelLayout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
+            .addGroup(customerManagmentPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(customerManagmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(taskIcon, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(customerManagmentPanelLayout.createSequentialGroup()
+                        .addGroup(customerManagmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(customerManagmentPanelLayout.createSequentialGroup()
+                                .addGroup(customerManagmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(customerManagmentPanelLayout.createSequentialGroup()
+                                        .addComponent(numberText, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(showButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(customerManagmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lineLabel)
+                                        .addComponent(enterText)
+                                        .addComponent(lineLabel1)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                                .addComponent(customerInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(changeStatusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(scrollPane))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerManagmentPanelLayout.createSequentialGroup()
-                        .addComponent(pageNameLabel)
-                        .addGap(85, 85, 85))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerManagmentPanelLayout.createSequentialGroup()
-                        .addComponent(lineLabel)
-                        .addGap(50, 50, 50)))
-                .addGap(88, 88, 88))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(customerManagmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(taskIcon)
+                            .addComponent(pageNameLabel))
+                        .addGap(235, 235, 235))))
         );
         customerManagmentPanelLayout.setVerticalGroup(
             customerManagmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -69,16 +304,31 @@ public class CustomersManagment extends javax.swing.JFrame {
                 .addComponent(taskIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pageNameLabel)
+                .addGap(18, 18, 18)
+                .addGroup(customerManagmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(customerManagmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(customerManagmentPanelLayout.createSequentialGroup()
+                            .addComponent(lineLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(7, 7, 7)
+                            .addComponent(enterText)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(customerManagmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(showButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(numberText, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lineLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(changeStatusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(customerInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lineLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(307, Short.MAX_VALUE))
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(customerManagmentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(customerManagmentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,6 +339,28 @@ public class CustomersManagment extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showButtonActionPerformed
+        if( numberText.getText().equals("") )
+        {
+            JOptionPane.showMessageDialog(null, "You must enter a number!");
+        }
+        else
+        {
+            int nmbr = Integer.parseInt(numberText.getText());
+            custNmbr = nmbr;
+            dbcm.getCustomerVisit(nmbr);
+        }
+        showInfo(true);
+        showStatus(true);
+    }//GEN-LAST:event_showButtonActionPerformed
+
+    private void statusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusButtonActionPerformed
+        String statusString = statusComboBox.getSelectedItem().toString();
+        dbcm.updateCustomerStatus(custNmbr, statusString);
+        showInfo(false);
+        showStatus(false);
+    }//GEN-LAST:event_statusButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,9 +398,29 @@ public class CustomersManagment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel changeStatusPanel;
+    public static javax.swing.JPanel customerInfoPanel;
     private javax.swing.JPanel customerManagmentPanel;
+    public static javax.swing.JTable customersTable;
+    public static javax.swing.JLabel dateRez;
+    private javax.swing.JLabel enterText;
+    public static javax.swing.JLabel jLabel1;
+    public static javax.swing.JLabel jLabel3;
+    public static javax.swing.JLabel jLabel5;
+    public static javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lineLabel;
+    private javax.swing.JLabel lineLabel1;
+    public static javax.swing.JLabel lineLabel2;
+    public static javax.swing.JLabel nameRez;
+    private javax.swing.JTextField numberText;
     private javax.swing.JLabel pageNameLabel;
+    private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JButton showButton;
+    public static javax.swing.JLabel specRez;
+    private javax.swing.JButton statusButton;
+    private javax.swing.JComboBox<String> statusComboBox;
+    public static javax.swing.JLabel statusRez;
+    private javax.swing.JLabel statusText;
     private javax.swing.JLabel taskIcon;
     // End of variables declaration//GEN-END:variables
 }
