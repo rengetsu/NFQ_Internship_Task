@@ -21,7 +21,7 @@ he has left before the meeting according to the reservation code.
 
 ## :books: Used jar files
 
-  * MySQL connector 5.1.46
+  * MySQL connector 5.1.46 (download - https://drive.google.com/file/d/13T-fAAW5nbfsxY-Rf87sm0i_53S2cr2P/view?usp=sharing)
 
 ## :white_check_mark: Requirements
 
